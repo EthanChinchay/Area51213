@@ -53,21 +53,20 @@ public class TopDownShooterMovementWithRigidbody2D : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        animator.SetBool ("Moving", isMoving);
+        //animator.SetBool ("Moving", isMoving);
         Vector3 step = new Vector2(GetAxis(DIR_HORIZONTAL), GetAxis(DIR_VERTICAL));
-        if (isMoving) {
+        /*if (isMoving) {
             animator.SetFloat (LAST_MODIFIER + DIR_HORIZONTAL, animator.GetFloat (DIR_HORIZONTAL));
             animator.SetFloat (LAST_MODIFIER + DIR_VERTICAL, animator.GetFloat (DIR_VERTICAL));
         }
         animator.SetFloat (DIR_HORIZONTAL, step.x);
-        animator.SetFloat (DIR_VERTICAL, step.y);
+        animator.SetFloat (DIR_VERTICAL, step.y);*/
         
         
         step *= speed * Time.deltaTime;
         rigidbody2D.MovePosition (transform.position + step);
 
         //sightDirection.Rotate (Vector3.back * GetAxis ("Arrow_H") * angularVelocity * Time.deltaTime);
-
         mouseWorldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
         mouseWorldPos.z = transform.position.z;
         Debug.DrawLine (transform.position, mouseWorldPos, Color.red);

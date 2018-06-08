@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/PlatformerTest2D/MainMenu.unity
-    guid: 77acb1b29d34b425da8406c98a6b6d5f
+    guid: bfcdc51e81bc942dd842290f7cb7df70
   - enabled: 1
     path: Assets/PlatformerTest2D/PlatformerTest.unity
     guid: 9584c60dfac6448418536dbe4d0c32dd

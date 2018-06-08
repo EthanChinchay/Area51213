@@ -116,13 +116,13 @@ public class TopDownShooterMovement : MonoBehaviour {
     }
 
     void OnTriggerEnter2D (Collider2D other) {
-        if (other.CompareTag ("Block")) {
+        if (other.CompareTag ("Wall")) {
+            Debug.Log ("You Shall Not Pass!!");
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Wall")) {
-            wall = collision.gameObject;
         }
     }
 }
