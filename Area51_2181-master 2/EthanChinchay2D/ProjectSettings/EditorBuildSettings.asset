@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PlatformerTest2D/MainMenu.unity
+    path: Assets/Platformer&TopDownProject/Scenes/MainMenu.unity
     guid: bfcdc51e81bc942dd842290f7cb7df70
   - enabled: 1
-    path: Assets/PlatformerTest2D/PlatformerTest.unity
+    path: Assets/Platformer&TopDownProject/Scenes/PlatformerTest.unity
     guid: 9584c60dfac6448418536dbe4d0c32dd
   - enabled: 1
-    path: Assets/PlatformerTest2D/PlatformerTest2.unity
+    path: Assets/Platformer&TopDownProject/Scenes/PlatformerTest2.unity
     guid: f88a92a5f4e0248e88518baee616653a
+  - enabled: 1
+    path: Assets/Platformer&TopDownProject/Scenes/TopDownTest.unity
+    guid: f2974d2178bd1476aa49fb93f950764c
   m_configObjects: {}
