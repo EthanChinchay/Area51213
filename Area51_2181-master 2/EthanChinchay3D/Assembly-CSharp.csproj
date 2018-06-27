@@ -59,8 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraMovement.cs" />
-    <Compile Include="Assets\PlatformerMovement.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\PlatformerMovement.cs" />
+    <Compile Include="Assets\Scripts\SwitchControl.cs" />
+    <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
+    <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
+    <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/alumno/Documents/GitHub/Area5121/Area51_2181-master 2/EthanChinchay3D/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

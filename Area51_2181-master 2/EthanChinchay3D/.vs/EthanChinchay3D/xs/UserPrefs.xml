@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{885EF04C-097F-6BD1-1BCC-A9E3ACF96AFF}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CameraMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlatformerMovement.cs">
     <Files>
-      <File FileName="Assets/PlatformerMovement.cs" Line="28" Column="71" />
-      <File FileName="Assets/CameraMovement.cs" Line="8" Column="5" />
+      <File FileName="Assets/Scripts/PlatformerMovement.cs" Line="78" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
