@@ -5,14 +5,18 @@ using UnityEngine;
 public class PlatformerMovement : MonoBehaviour
 {
 
-    public float horizontalSpeed;
+    public float movementSpeed;
     public float angularlSpeed;
     Vector3 movement;
     public Rigidbody rigidbody3D;
     public float impulseValue;
     Quaternion rotation;
-    List<Collider> groundCollection;
+    public PlayerScript playerScript;
+
     bool grounded;
+
+    List<Collider> groundCollection;
+
 
     public Animator animatorController;
 
@@ -25,39 +29,43 @@ public class PlatformerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movement = transform.position;
         rotation = rigidbody3D.rotation;
         float horizontalDirection = Input.GetAxis("Horizontal");
         float verticalDirection = Input.GetAxis("Vertical");
+
+        //animatorController.SetFloat ("ForwardSpeed"); NormalizeMovement(verticalDirection);
+
         if (Input.GetKey(KeyCode.J))
         {
-            rotation *= Quaternion.Euler(Vector3.up * angularlSpeed * Time.fixedDeltaTime);
+            rotation *= Quaternion.Euler(Vector3.up * -angularlSpeed * Time.fixedDeltaTime);
         }
         if (Input.GetKey(KeyCode.K))
         {
-            rotation *= Quaternion.Euler(Vector3.right * angularlSpeed * Time.fixedDeltaTime);
+            rotation *= Quaternion.Euler(Vector3.up * angularlSpeed * Time.fixedDeltaTime);
         }
 
         if (horizontalDirection != 0)
         {
-            movement += transform.right * horizontalDirection * horizontalDirection * Time.fixedDeltaTime;
+            movement += transform.right * movementSpeed * horizontalDirection * Time.fixedDeltaTime;
         }
         if (verticalDirection != 0)
         {
-            movement += transform.forward * verticalDirection * verticalDirection * Time.fixedDeltaTime;
+            movement += transform.forward * movementSpeed * verticalDirection * Time.fixedDeltaTime;
         }
 
         rigidbody3D.MovePosition(movement);
         rigidbody3D.MoveRotation(rotation);
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rigidbody3D.AddForce(Vector3.up * impulseValue, ForceMode.Impulse);
+            rigidbody3D.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            playerScript.ModifyHp(-10f);
         }
         if (currentSwich != null && Input.GetKeyDown(KeyCode.E))
         {
@@ -71,21 +79,26 @@ public class PlatformerMovement : MonoBehaviour
 
         }
     }
-    private void OnTriggerExit(Collider other){
+    /*private void OnTriggerExit(Collider other){
         if (other.CompareTag("Switch")){
             currentSwich = null;
 
         }
+    }*/
+    float NormalizeMovement (float targetMovement){
+        
+        return (targetMovement + 1f)/2f ;
     }
-    void OnCollisionEnter(Collision collision){
-        if (groundCollection.Contains(collision.collider)){
+
+    void OnCollisionStay (Collision collision){
+        if (!groundCollection.Contains (collision.collider)){
             foreach (ContactPoint contact in collision.contacts){
                 Debug.DrawRay(contact.point, contact.normal * 5f, Color.red, 1f);
                 if (Vector3.Dot(contact.normal, Vector3.up) > 0.75f){
                     Debug.Log("Should be grounded");
                     grounded = true;
                     animatorController.SetBool("isGrounded", grounded);
-                    groundCollection.Add(collision.collider);
+                    groundCollection.Add (collision.collider);
                     break;
                 }
             }
