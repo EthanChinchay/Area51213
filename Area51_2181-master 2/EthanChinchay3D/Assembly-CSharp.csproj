@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\LManager.cs" />
     <Compile Include="Assets\Scripts\PlatformerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\PowerBehaviour.cs" />
     <Compile Include="Assets\Scripts\SwitchControl.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />

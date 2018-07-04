@@ -66,17 +66,20 @@ public class PlatformerMovement : MonoBehaviour
         {
             rigidbody3D.AddForce(Vector3.up * 5f, ForceMode.Impulse);
             playerScript.ModifyHp(-10f);
+        } else if (Input.GetKeyDown(KeyCode.F)){
+            GetComponent<Animator>().SetTrigger("Roundabout");
         }
-        if (currentSwich != null && Input.GetKeyDown(KeyCode.E))
-        {
-            currentSwich.Active();
-        }
+    }
+    void Attack(){
+        //playerScript.currentPower.AttackRoundAbout;
     }
     //Raycast
     private void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Switch")){
-            currentSwich = other.GetComponent<SwitchControl>();
-
+        if (other.CompareTag("Power")){
+            PowerBehaviour targetPower = other.GetComponent<PowerBehaviour>();
+            if(playerScript.currentPower != null || playerScript.currentPower != other.GetComponent <PowerBehaviour>()){
+                targetPower.AssignActivePlayer (this);
+            }
         }
     }
     /*private void OnTriggerExit(Collider other){
