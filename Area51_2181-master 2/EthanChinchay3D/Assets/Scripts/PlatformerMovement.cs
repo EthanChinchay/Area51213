@@ -11,8 +11,8 @@ public class PlatformerMovement : MonoBehaviour
     public Rigidbody rigidbody3D;
     public float impulseValue;
     Quaternion rotation;
-    public PlayerScript playerScript;
 
+    public PlayerScript playerScript;
     bool grounded;
 
     List<Collider> groundCollection;
@@ -23,14 +23,12 @@ public class PlatformerMovement : MonoBehaviour
     public SwitchControl currentSwich;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         groundCollection = new List<Collider> ();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         movement = transform.position;
         rotation = rigidbody3D.rotation;
         float horizontalDirection = Input.GetAxis("Horizontal");
@@ -38,21 +36,17 @@ public class PlatformerMovement : MonoBehaviour
 
         //animatorController.SetFloat ("ForwardSpeed"); NormalizeMovement(verticalDirection);
 
-        if (Input.GetKey(KeyCode.J))
-        {
+        if (Input.GetKey(KeyCode.I)) {
             rotation *= Quaternion.Euler(Vector3.up * -angularlSpeed * Time.fixedDeltaTime);
         }
-        if (Input.GetKey(KeyCode.K))
-        {
+        if (Input.GetKey(KeyCode.O)) {
             rotation *= Quaternion.Euler(Vector3.up * angularlSpeed * Time.fixedDeltaTime);
         }
 
-        if (horizontalDirection != 0)
-        {
+        if (horizontalDirection != 0) {
             movement += transform.right * movementSpeed * horizontalDirection * Time.fixedDeltaTime;
         }
-        if (verticalDirection != 0)
-        {
+        if (verticalDirection != 0) {
             movement += transform.forward * movementSpeed * verticalDirection * Time.fixedDeltaTime;
         }
 
@@ -62,22 +56,22 @@ public class PlatformerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rigidbody3D.AddForce(Vector3.up * 5f, ForceMode.Impulse);
             playerScript.ModifyHp(-10f);
-        } else if (Input.GetKeyDown(KeyCode.F)){
-            GetComponent<Animator>().SetTrigger("Roundabout");
+        } else if (Input.GetKeyDown(KeyCode.J) && !playerScript.currentPower.isWaiting) {
+            Attack ();
         }
     }
     void Attack(){
-        //playerScript.currentPower.AttackRoundAbout;
+        playerScript.currentPower.AttackRoundAbout ();
     }
-    //Raycast
-    private void OnTriggerEnter(Collider other){
+
+    void OnTriggerEnter(Collider other){
         if (other.CompareTag("Power")){
             PowerBehaviour targetPower = other.GetComponent<PowerBehaviour>();
-            if(playerScript.currentPower != null || playerScript.currentPower != other.GetComponent <PowerBehaviour>()){
+            if(playerScript.currentPower != null || playerScript.currentPower != targetPower){
+                playerScript.currentPower = targetPower;
                 targetPower.AssignActivePlayer (this);
             }
         }
@@ -111,7 +105,9 @@ public class PlatformerMovement : MonoBehaviour
         if(groundCollection.Contains(collision.collider)){
             groundCollection.Remove(collision.collider);
         }
-        if(groundCollection.Count <=0) { grounded = false; }
-        animatorController.SetBool("isGrounded", grounded);
+        if (groundCollection.Count <= 0) {
+            grounded = false;
+            animatorController.SetBool("isGrounded", grounded);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class CameraMovement : MonoBehaviour {
             Vector3 temp = transform.position;
             temp.x = Mathf.MoveTowards(temp.x, lookTarget.position.x, 5f * Time.deltaTime);
                                     
-        }*/
+        }*/             
     }
 	private void OnDrawGizmos()
 	{
